@@ -16,8 +16,8 @@ import ShoppingCheckout from "./pages/shopping-view/checkout";
 import './index.css'
 
 function App() {
-  const isAuthenticated = true;
-  const user = {role: "admin"};
+  const isAuthenticated = false;
+  const user = null;
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
