@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import CommonForm from "@/components/common/form";
 import { Link } from "react-router-dom";
 import { registerFormControls } from "@/config";
+import { useDispatch } from "react-redux";
+import { registerUser } from "@/store/auth-slice";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast"
 
 const initialState = {
     name: "",
@@ -12,8 +16,21 @@ const initialState = {
 
 function AuthRegister() {
     const [formData, setFormData] = useState({});
-    const onSubmit = () => {
-        console.log(formData);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { toast } = useToast();
+    
+    const onSubmit = (event) => {
+        event.preventDefault();
+        dispatch(registerUser(formData)).then((response) => {
+            if(response.payload.success) {
+                toast({
+                    title: "Account created successfully",
+                    description: response.payload.message,
+                });
+                navigate("/auth/login");
+            }
+        });
     }
     
     return (
