@@ -10,7 +10,8 @@ const initialState = {
 
 function AuthLogin() {
     const [formData, setFormData] = useState({});
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         console.log(formData);
     }
     
