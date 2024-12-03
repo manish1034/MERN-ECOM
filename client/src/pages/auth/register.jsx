@@ -29,6 +29,11 @@ function AuthRegister() {
                     description: response.payload.message,
                 });
                 navigate("/auth/login");
+            } else {
+                toast({
+                    title: response?.payload?.message,
+                    variant: 'destructive',
+                });
             }
         });
     }
